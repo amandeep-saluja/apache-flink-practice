@@ -1,4 +1,7 @@
-package com.example.flink.socket;
+package com.example.flink.socketExample;
+
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -8,6 +11,17 @@ import java.net.Socket;
 public class SocketRead {
 
     public static void main(String[] args) {
+        try {
+            StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+            DataStream<String> ds = env.socketTextStream("localhost", 9000, "\n");
+            ds.print();
+            env.execute();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void runWithSocket() {
         try {
             int port = 9000;  // Specify the port you want to connect to
             String host = "localhost";
@@ -26,7 +40,7 @@ public class SocketRead {
             inputStream.close();
             socket.close();
         }catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }

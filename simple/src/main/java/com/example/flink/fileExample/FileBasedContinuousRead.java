@@ -1,4 +1,4 @@
-package com.example.flink;
+package com.example.flink.fileExample;
 
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.java.io.TextInputFormat;
